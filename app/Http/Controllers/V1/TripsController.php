@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\V1;
 
-use App\Helpers\Exchange;
 use App\Http\Resources\V1\TripsIndexResource;
 use App\Http\Resources\V1\TripsShowResource;
 use App\Models\Trips;
@@ -77,7 +76,7 @@ class TripsController extends Controller
      */
     public function store(StoreTripsRequest $request)
     {
-        return response()->json(Trips::create($request->all()))->setStatusCode(300);
+        return response()->json(Trips::create($request->all()))->setStatusCode(200);
     }
 
     /**
@@ -103,7 +102,7 @@ class TripsController extends Controller
     public function update(UpdateTripsRequest $request, Trips $trip)
     {
         $trip->update($request->all());
-        return response()->json($trip)->setStatusCode(300);
+        return response()->json($trip)->setStatusCode(200);
     }
 
     /**
@@ -115,6 +114,6 @@ class TripsController extends Controller
     public function destroy(Trips $trip)
     {
         $trip->delete();
-        return response()->json($trip)->setStatusCode(300);
+        return response()->json($trip)->setStatusCode(200);
     }
 }

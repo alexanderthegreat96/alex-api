@@ -24,7 +24,7 @@ class BookingController extends Controller
             return BookingIndexResource::collection($bookings);
         }
 
-        return response(['data' => 'No bookings found'])->json()->setStatusCode(211);
+        return response(['data' => 'No bookings found'])->json()->setStatusCode(200);
     }
 
 
@@ -45,7 +45,7 @@ class BookingController extends Controller
                 return response()->json(['data' => 'Trip with id: '.$input['trip_id'].' is already booked by someone'])->setStatusCode(211);
             }
             $create = Bookings::create(['user_id' => $user_id, 'trip_id' => $input['trip_id']]);
-            return response()->json($create)->setStatusCode(211);
+            return response()->json($create)->setStatusCode(200);
         } else {
             return response()->json(['data' => 'Could not find specified trip'])->setStatusCode(404);
         }
@@ -71,17 +71,17 @@ class BookingController extends Controller
      */
     public function update(Request $request, Bookings $bookings)
     {
-        //
+        //nothing to really update
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Bookings $bookings
+     * @param \App\Models\Bookings $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bookings $bookings)
+    public function destroy(Bookings $booking)
     {
-        //
+        return $booking->delete();
     }
 }
