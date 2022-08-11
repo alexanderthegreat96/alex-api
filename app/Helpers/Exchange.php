@@ -75,4 +75,13 @@ class Exchange
 
         return "Incorrect currency!";
     }
+
+    /**
+     * @param int $price
+     * @param string $currency
+     * @return float|int
+     */
+    public function convertPrice(int $price,string $currency = 'EUR') {
+        return $price * $this->getExchangeRate($currency);
+    }
 }

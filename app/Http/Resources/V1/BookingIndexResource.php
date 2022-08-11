@@ -19,7 +19,8 @@ class BookingIndexResource extends JsonResource
                 'booking_id' => $this->id,
                 'trip_id' => $this->trip->id,
                 'from_date' => $this->trip->start_date,
-                'to_date' => $this->trip->end_date
+                'to_date' => $this->trip->end_date,
+                'url' => $request->fullUrl().'/'.$this->id,
             ];
     }
 }

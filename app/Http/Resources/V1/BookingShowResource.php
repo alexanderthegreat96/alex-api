@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources\V1;
 
+use App\Helpers\ExchangeFacade;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Cache;
 
 class BookingShowResource extends JsonResource
 {
@@ -14,6 +16,13 @@ class BookingShowResource extends JsonResource
      */
     public function toArray($request)
     {
+        $convertedPrice = null;
+        if(!Cache::has('convertedPrice_'.$this->id)) {
+            $convertedPrice = ExchangeFacade::convertPrice($this->price);
+            Cache::add('convertedPrice_'.$this->id,$convertedPrice,60);
+        } else {
+            $convertedPrice = Cache::get('convertedPrice_'.$this->id);
+        }
 
         return
             [
@@ -21,7 +30,8 @@ class BookingShowResource extends JsonResource
                 'trip_id' => $this->trip->id,
                 'from_date' => $this->trip->start_date,
                 'to_date' => $this->trip->end_date,
-                'price' => $this->trip->price,
+                'price' => $this->trip->price. 'EUR',
+                'converted_price' => $convertedPrice. ' RON',
                 'title' => $this->trip->title
             ];
     }

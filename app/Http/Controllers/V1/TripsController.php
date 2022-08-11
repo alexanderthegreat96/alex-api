@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\V1;
 
+use App\Helpers\Exchange;
 use App\Http\Resources\V1\TripsIndexResource;
 use App\Http\Resources\V1\TripsShowResource;
 use App\Models\Trips;
@@ -14,6 +15,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TripsController extends Controller
 {
+
     /**
      * @param Request $request
      * @return AnonymousResourceCollection
