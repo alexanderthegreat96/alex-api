@@ -1,11 +1,20 @@
-#alex-api
-Concept project for Coredomino interview
+## BlackSquare Test
+
 
 Uses:
 - Laravel 9
 - Uses laravel/sanctum
 - Uses restul api endpoints built using apiResource
 - Uses spatie/sluggable 
+
+
+Deploy app:
+- git clone 
+- bash ./vendor/laravel/sail/bin/sail -f ./docker-compose.yml up -d (if you wanna run docker)
+- php artisan config:clear
+- php artisan cache:clear
+- php artisan migrate --seed (to populate trips data)
+- run locally -> php artisan serve https://github.com/alexanderthegreat96/alex-api
 
 Access the api at
  - all endpoints and required params will  be listed at
